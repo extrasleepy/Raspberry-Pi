@@ -31,7 +31,7 @@ while running:
 
     if pygame.font:
         font = pygame.font.Font(None, 750)
-        text = font.render(myText[random.randint(0,len(myText))], 1, (red+10, green+10, blue+10))
+        text = font.render(myText[random.randint(0,len(myText)-1)], 1, (red+10, green+10, blue+10))
         textpos = text.get_rect(centerx=(screen.get_width()/2),centery=(screen.get_height()/2))
         background.blit(text, textpos)
 
