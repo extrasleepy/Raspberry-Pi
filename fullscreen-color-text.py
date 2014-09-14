@@ -2,7 +2,7 @@ import pygame
 import random
 from time import sleep
 
-myText=["BALLS","RATS","RUNTS","TOADS","BLOOD","CASH","PILLS","CATS","BUMS","LIGHTS","STRIP","CREME","MOLD","DRIP"]
+myText=["BALLS","RATS","RUNTS","TOADS","BLOOD","CASH","PILLS","CATS","BUMS","LIGHT","STRIP","CREME","MOLD","DRIP","GAS","TRUCK","RUMP","SIN","CEREAL","COUPON","MILK","SHRIMP","MUSK"]
 running=True
 pygame.init()
 pygame.mouse.set_visible(0)
@@ -30,7 +30,7 @@ while running:
     background.fill((red, green, blue))
 
     if pygame.font:
-        font = pygame.font.Font(None, 750)
+        font = pygame.font.Font(None, 720)
         text = font.render(myText[random.randint(0,len(myText)-1)], 1, (red+10, green+10, blue+10))
         textpos = text.get_rect(centerx=(screen.get_width()/2),centery=(screen.get_height()/2))
         background.blit(text, textpos)
