@@ -18,12 +18,12 @@ while running:
     green = random.random()*255
     red = random.random()*255
     
-    if red>245:
-        red = 245
-    if blue>245:
-        blue = 245
-    if green>245:
-        green = 245
+    if red>244:
+        red = 244
+    if blue>244:
+        blue = 244
+    if green>244:
+        green = 244
     
     background = pygame.Surface(screen.get_size())
     background = background.convert()
