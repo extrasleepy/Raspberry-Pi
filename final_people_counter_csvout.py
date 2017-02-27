@@ -1,5 +1,5 @@
-##Computer Vision People Counter
-##Main code by Federico Mejia with additions by akleindolph
+##Contador de personas
+##Federico Mejia
 import numpy as np
 import cv2
 import Person
@@ -10,8 +10,9 @@ cnt_up   = 0
 cnt_down = 0
 
 #Fuente de video
+#cap = cv2.VideoCapture(0)
 cap = cv2.VideoCapture(0)
-file=open("testfile.txt","w")
+file=open("countfile "+str(time.strftime('%a %H:%M:%S'))+".csv","w+")
 file.write("Start"+"\n")
 
 #Propiedades del video
@@ -82,7 +83,7 @@ while(cap.isOpened()):
     #########################
     #   PRE-PROCESAMIENTO   #
     #########################
-
+    
     #Aplica substraccion de fondo
     fgmask = fgbg.apply(frame)
     fgmask2 = fgbg.apply(frame)
@@ -105,7 +106,7 @@ while(cap.isOpened()):
     #################
     #   CONTORNOS   #
     #################
-
+    
     # RETR_EXTERNAL returns only extreme outer flags. All child contours are left behind.
     _, contours0, hierarchy = cv2.findContours(mask2,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
     for cnt in contours0:
@@ -114,9 +115,9 @@ while(cap.isOpened()):
             #################
             #   TRACKING    #
             #################
-
+            
             #Falta agregar condiciones para multipersonas, salidas y entradas de pantalla.
-
+            
             M = cv2.moments(cnt)
             cx = int(M['m10']/M['m00'])
             cy = int(M['m01']/M['m00'])
@@ -132,12 +133,12 @@ while(cap.isOpened()):
                         if i.going_UP(line_down,line_up) == True:
                             cnt_up += 1;
                             print "ID:",i.getId(),'crossed going up at',time.strftime("%c")
-                            file.write("ID:"+str(i.getId())+" crossed going up at "+str(time.strftime("%c"))+"\n")
-
+                            file.write(str(i.getId())+",up,"+str(time.strftime("%c"))+"\n")
+                            
                         elif i.going_DOWN(line_down,line_up) == True:
                             cnt_down += 1;
                             print "ID:",i.getId(),'crossed going down at',time.strftime("%c")
-                            file.write("ID:"+str(i.getId())+" crossed going down at "+str(time.strftime("%c"))+"\n")
+                            file.write(str(i.getId())+",down,"+str(time.strftime("%c"))+"\n")
                         break
                     if i.getState() == '1':
                         if i.getDir() == 'down' and i.getY() > down_limit:
@@ -152,16 +153,16 @@ while(cap.isOpened()):
                 if new == True:
                     p = Person.MyPerson(pid,cx,cy, max_p_age)
                     persons.append(p)
-                    pid += 1
+                    pid += 1     
             #################
             #   DIBUJOS     #
             #################
             cv2.circle(frame,(cx,cy), 5, (0,0,255), -1)
-            img = cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
+            img = cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)            
             #cv2.drawContours(frame, cnt, -1, (0,255,0), 3)
-
+            
     #END for cnt in contours0
-
+            
     #########################
     # DIBUJAR TRAYECTORIAS  #
     #########################
@@ -173,7 +174,7 @@ while(cap.isOpened()):
 ##        if i.getId() == 9:
 ##            print str(i.getX()), ',', str(i.getY())
         cv2.putText(frame, str(i.getId()),(i.getX(),i.getY()),font,0.3,i.getRGB(),1,cv2.LINE_AA)
-
+        
     #################
     #   IMAGANES    #
     #################
@@ -189,14 +190,14 @@ while(cap.isOpened()):
     cv2.putText(frame, str_down ,(10,90),font,0.5,(255,0,0),1,cv2.LINE_AA)
 
     cv2.imshow('Frame',frame)
-    #cv2.imshow('Mask',mask)
-
+    #cv2.imshow('Mask',mask)    
+    
     #preisonar ESC para salir
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break
 #END while(cap.isOpened())
-
+    
 #################
 #   LIMPIEZA    #
 #################
