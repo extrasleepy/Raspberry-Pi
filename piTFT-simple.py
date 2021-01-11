@@ -60,7 +60,6 @@ while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=(150,10,255))
     #print the text for 5 sec
     draw.text((x, y),message, font=font, fill=(255,255,255))
-    y += font.getsize(message)[1]
     
     # Display image.
     disp.image(image, rotation)
@@ -73,8 +72,7 @@ while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=(0,0,0))
     #print the text for 5 sec
     draw.text((x, y),message, font=font2, fill=(255,0,255))
-    y += font.getsize(message)[1]
-    
+
     # Display image.
     disp.image(image, rotation)
     time.sleep(2.0)
