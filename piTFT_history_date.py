@@ -1,9 +1,9 @@
 import time
-import subprocess
 import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
+
 import json
 import requests
 from requests import get
@@ -43,15 +43,10 @@ rotation = 180
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
  
-# Draw a black filled box to clear the image.
-draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
-disp.image(image, rotation)
 # First define some constants to allow easy resizing of shapes.
 padding = 0
 top = padding
 bottom = height - padding
-# Move left to right keeping track of the current x position for drawing shapes.
-x = 0
  
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the
 # same directory as the python script!
@@ -65,6 +60,7 @@ backlight.value = True
 
 while True:
     y=top
+    x=0
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
      
@@ -75,8 +71,7 @@ while True:
     message = one_day['data']['Events'][-1]['text']
     
     #print the date for 5 sec
-    draw.text((x, y),date, font=font, fill="#FFFFFF")
-    y += font.getsize(date)[1]
+    draw.text((x, y),date, font=font, fill=(255,255,255))
     
     # Display image.
     disp.image(image, rotation)
