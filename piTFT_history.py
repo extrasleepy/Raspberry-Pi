@@ -1,10 +1,10 @@
 import time
-import subprocess
 import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
-import textwrap
 import adafruit_rgb_display.st7789 as st7789
+
+import textwrap   #library for wrapping text
 import json
 import requests
 from requests import get
@@ -44,20 +44,16 @@ rotation = 180
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
  
-# Draw a black filled box to clear the image.
-draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
-disp.image(image, rotation)
 # First define some constants to allow easy resizing of shapes.
 padding = 0
 top = padding
 bottom = height - padding
-# Move left to right keeping track of the current x position for drawing shapes.
-x = 0
  
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the
 # same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
-font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 24)
+fontsm = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 19)
+font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 32)
  
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
@@ -65,40 +61,37 @@ backlight.switch_to_output()
 backlight.value = True
 
 while True:
+    x=0
     y=top
-    wrapper = textwrap.TextWrapper(width=18) 
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
      
     one_day = get(url).json()
-    print (one_day['data']['Events'][-1]['year'],one_day['data']['Events'][-1]['text'])
+    print (one_day['data']['Events'][10]['year'],one_day['data']['Events'][-1]['text'])
     
-    date = one_day['data']['Events'][-1]['year']
-    message = one_day['data']['Events'][-1]['text']
+    date = one_day['data']['Events'][10]['year']
+    message = one_day['data']['Events'][10]['text']
     
     #print the date for 5 sec
-    draw.text((x, y),date, font=font, fill="#FFFFFF")
-    y += font.getsize(date)[0]
+    draw.text((x, y),"today in "+date, font=font, fill=(255,255,255))
     
     # Display image.
     disp.image(image, rotation)
     time.sleep(5.0)
     
-    #print the text for 5 sec
     y=top
-    wrapper = textwrap.TextWrapper(width=18) 
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
-    
+    # text wrapping
+    wrapper = textwrap.TextWrapper(width=21) 
     word_list = wrapper.wrap(text=message)
     split_message = ''
-    for ii in word_list[:-1]:
-        split_message = split_message + ii + '\n'
+    for i in word_list[:-1]:
+        split_message = split_message + i + '\n'
     split_message += word_list[-1]
     
     # Write text.
-    draw.text((x, y),split_message, font=font, fill="#FFFFFF")
-    y += font.getsize(split_message)[0]
+    draw.text((x, y),split_message, font=fontsm, fill=(255,255,255))
     
     # Display image.
     disp.image(image, rotation)
