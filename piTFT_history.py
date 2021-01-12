@@ -67,7 +67,7 @@ while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
      
     one_day = get(url).json()
-    print (one_day['data']['Events'][10]['year'],one_day['data']['Events'][-1]['text'])
+    print (one_day['data']['Events'][10]['year'],one_day['data']['Events'][10]['text'])
     
     date = one_day['data']['Events'][10]['year']
     message = one_day['data']['Events'][10]['text']
