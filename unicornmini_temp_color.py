@@ -11,7 +11,7 @@ unicornhatmini.set_brightness(0.5)
 temp_color=0
 
 settings = {
-    'api_key':'0e974dbb38ad3719228ac1854b212827',
+    'api_key':'your_key_here',
     'zip_code':'94112',
     'country_code':'us',
     'temp_unit':'imperial'} #unit can be metric, imperial, or kelvin
