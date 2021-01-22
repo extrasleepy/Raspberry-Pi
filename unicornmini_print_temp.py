@@ -9,7 +9,7 @@ from unicornhatmini import UnicornHATMini
 import requests
 
 settings = {
-    'api_key':'your_key',
+    'api_key':'your_key_here',
     'zip_code':'94112',
     'country_code':'us',
     'temp_unit':'imperial'} #unit can be metric, imperial, or kelvin
