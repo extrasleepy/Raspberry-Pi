@@ -1,7 +1,7 @@
 from requests import get
 import json
 
-url='https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=55CCF627GGGUDrAeClzdXjmCUU4cGGXF'
+url='https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=your_key_here'
 nyt = get(url).json()
 data = json.dumps(nyt, sort_keys=True, indent=4)
 
