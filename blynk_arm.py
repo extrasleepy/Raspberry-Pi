@@ -60,7 +60,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(18,GPIO.OUT)   # sets pin 18 as output
 
-BLYNK_AUTH = 'aND7v7xp2nfE4RQ44G4TCg08xemYcDwh'
+BLYNK_AUTH = 'Your_auth_token'
 
 # initialize Blynk
 blynk = blynklib.Blynk(BLYNK_AUTH)
