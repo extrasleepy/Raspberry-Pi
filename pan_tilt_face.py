@@ -1,4 +1,5 @@
 #pan and tilt example using adafruit_servo bonnet
+#download the data set you need at https://github.com/opencv/opencv/tree/master/data/haarcascades
 
 import RPi.GPIO as GPIO          
 from time import sleep
