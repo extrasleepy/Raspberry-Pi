@@ -1,4 +1,4 @@
-#top sneaker values, scrolling on unicorn hat
+#top sneaker values, scrolling on unicorn hat mini
 import json
 import requests
 import time
