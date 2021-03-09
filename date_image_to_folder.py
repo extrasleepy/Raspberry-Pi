@@ -11,6 +11,5 @@ path = '/home/pi/Documents/'+ str(tstamp)  #path generated
 os.mkdir(path)   #make the folder
 os.chdir(path)    #go into folder
 
-#loop
 camera.capture('image'+str(tstamp)+'.jpg')
 print ('image printed')
