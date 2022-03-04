@@ -1,3 +1,5 @@
+import time
+import pygame
 # create the display surface object
 # of specific dimension..e(X, Y).
 display_surface = pygame.display.set_mode((X, Y))
