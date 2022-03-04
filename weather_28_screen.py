@@ -20,7 +20,7 @@ blue = (0, 0, 128)
 black = (0, 0, 0)
  
 # assigning values to X and Y variable
-X = 1200
+X = 1280
 Y = 900
  
 # create the display surface object
