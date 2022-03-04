@@ -20,7 +20,7 @@ image_file = io.BytesIO(image_str)
 # (r, g, b) color tuple, values 0 to 255
 white = (255, 255, 255)
 
-# create a 600x400 white screen
+# create a 1200x1000 white screen
 screen = pg.display.set_mode((1200,1000),  pg.RESIZABLE )
 screen.fill(white)
 
