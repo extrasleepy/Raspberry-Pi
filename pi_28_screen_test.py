@@ -1,5 +1,22 @@
 import time
 import pygame
+
+# activate the pygame library
+# initiate pygame and give permission
+# to use pygame's functionality.
+pygame.init()
+ 
+# define the RGB value for white,
+#  green, blue colour .
+white = (255, 255, 255)
+green = (0, 255, 0)
+blue = (0, 0, 128)
+black = (0, 0, 0)
+ 
+# assigning values to X and Y variable
+X = 1280
+Y = 900
+
 # create the display surface object
 # of specific dimension..e(X, Y).
 display_surface = pygame.display.set_mode((X, Y))
