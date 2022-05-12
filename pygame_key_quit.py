@@ -78,6 +78,3 @@ while running:
     # Draws the surface object to the screen.
     pygame.display.update()
     time.sleep(2.0)
-
-         
-    
