@@ -1,13 +1,14 @@
+# provides arrival time in minutes at stop 13548 which is a 1 California route stop at 32nd and Clement St.
+
 import time
 from requests import get
-import json
 
-url='https://retro.umoiq.com/service/publicJSONFeed?command=predictions&a=sf-muni&stopId=13859&routetag=1-california'
-muni = get(url).json()['predictions']
-data = json.dumps(muni, sort_keys=True, indent=4)
-#print(data)
+url='https://webservices.umoiq.com/api/pub/v1/agencies/sfmta-cis/stopcodes/13548/predictions?key=0be8ebd0284ce712a63f29dcaf7798c4'
 
 while True:
-   muni = get(url).json()['predictions']
-   print(muni['direction']['prediction'][0]['minutes'])
+   muni_route = get(url).json()[0]['route']['title']
+   muni_stop = get(url).json()[0]['stop']['name']
+   muni_eta = get(url).json()[0]['values'][0]['minutes']
+   #print(muni['direction']['prediction'][0]['minutes'])
+   print(muni_route + " arrives in " + str(muni_eta) + " minutes at " + str(muni_stop) + " stop")
    time.sleep(30)
