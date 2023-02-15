@@ -15,8 +15,8 @@ black = (0,0,0)
 screen = pg.display.set_mode((1200,1000),  pg.RESIZABLE )
 screen.fill(black)
 font = pg.font.Font('freesansbold.ttf', 120)
-X = 1280
-Y = 900
+X = 1024
+Y = 768
 display_surface = pg.display.set_mode((X, Y))
 
 while True:
