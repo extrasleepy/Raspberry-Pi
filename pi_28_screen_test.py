@@ -33,7 +33,7 @@ font = pygame.font.Font('freesansbold.ttf', 120)
  
 # create a text surface object,
 # on which text is drawn on it.
-text = font.render('Hello Friendz', True, green, blue)
+text = font.render('Hello Friends', True, blue)
 text2 = font.render('Hello Enemies', True, blue, green) 
 # create a rectangular object for the
 # text surface object
