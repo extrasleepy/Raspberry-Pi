@@ -3,7 +3,7 @@ import time
 from requests import get
 import json
 
-api_key ="MW9S-E7SL-26DU-VV8V" 
+api_key ="Your-API-key" 
 
 url='http://api.bart.gov/api/etd.aspx?cmd=etd&orig=balb&dir=n&key='+api_key+'&json=y'
 
