@@ -15,6 +15,4 @@ try:
         time.sleep(2)
 
 except KeyboardInterrupt:  #end program if control+c pressed
-    pass
-finally:
     GPIO.cleanup()   #reset all the pins you've used
