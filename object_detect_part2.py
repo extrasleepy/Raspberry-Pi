@@ -1,31 +1,41 @@
+import os
 import cv2
 import numpy as np
 
-# Read the picure - The 1 means we want the image in BGR
-img = cv2.imread('object.jpg', 1) 
+# Suppress warnings from libpng
+os.environ["OPENCV_IO_ENABLE_JASPER"] = "1"
 
-# resize imag to 20% in each axis
-img = cv2.resize(img, (0,0), fx=0.2, fy=0.2)
-# convert BGR image to a HSV image
-hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) 
+# Read the image in BGR format
+img = cv2.imread('object.jpg', cv2.IMREAD_COLOR)
 
-# NumPy to create arrays to hold lower and upper range 
-# The “dtype = np.uint8” means that data type is an 8 bit integer
+if img is None:
+    print("Error: Could not read the image file.")
+    exit()
 
-lower_range = np.array([167, 100, 100], dtype=np.uint8) 
+# Resize the image to 20% of its original size
+img = cv2.resize(img, (0, 0), fx=0.2, fy=0.2)
+
+# Convert the BGR image to an HSV image
+hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+# Define the lower and upper bounds for the HSV mask
+lower_range = np.array([167, 100, 100], dtype=np.uint8)
 upper_range = np.array([187, 255, 255], dtype=np.uint8)
 
-# create a mask for image
+# Create a mask that isolates the specified color range
 mask = cv2.inRange(hsv, lower_range, upper_range)
 
-# display both the mask and the image side-by-side
-cv2.imshow('mask',mask)
-cv2.imshow('image', img)
+# Display the original image and the mask side-by-side
+cv2.imshow('Original Image', img)
+cv2.imshow('Color Mask', mask)
 
-# wait to user to press [ ESC ]
-while(1):
-  k = cv2.waitKey(0)
-  if(k == 27):
-    break
- 
+print("Press [ESC] to exit.")
+
+# Wait for user to press [ESC] key to exit
+while True:
+    key = cv2.waitKey(0)
+    if key == 27:  # ASCII code for ESC key
+        break
+
+# Clean up and close windows
 cv2.destroyAllWindows()
