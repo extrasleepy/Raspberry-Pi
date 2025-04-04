@@ -40,7 +40,7 @@ font = pygame.font.Font('freesansbold.ttf', 120)
  
 # infinite loop
 while True:
-    weather_type = get(url).json()['weather'][0]['main']
+    weather_type = get(url).json()['weather'][0]['description']
     print(weather_type)
     weather_temp = get(url).json()['main']['temp']
     print(weather_temp)
