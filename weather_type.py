@@ -12,6 +12,6 @@ BASE_URL = "http://api.openweathermap.org/data/2.5/weather?appid={0}&zip={1},{2}
 
 while True:
     final_url = BASE_URL.format(settings["api_key"],settings["zip_code"],settings["country_code"],settings["temp_unit"])
-    weather_data = get(final_url).json()['weather'][0]['main']
+    weather_data = get(final_url).json()['weather'][0]['description']
     print(weather_data)
     time.sleep(20) #get new data every 20 seconds
